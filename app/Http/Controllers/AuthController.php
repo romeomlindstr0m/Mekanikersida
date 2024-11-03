@@ -32,11 +32,21 @@ class AuthController extends Controller
         if (Auth::attempt($input)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('index');
+            return redirect()->intended();
         }
 
         return back()->withErrors([
             'username' => 'Användarnamnet eller lösenordet är fel.',
         ])->onlyInput('username');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        session()->flash('status', 'Du har blivit utloggad');
+
+        return redirect('login');
     }
 }
