@@ -50,4 +50,64 @@ class CustomerController extends Controller
         $customers = Customer::paginate(10);
         return view('search_customer')->with('customers', $customers);
     }
+
+    public function edit(int $id)
+    {
+        $customer = Customer::find($id);
+
+        if (!$customer) {
+            abort(404);
+        }
+
+        return view('edit_customer')->with('customer', $customer);
+    }
+
+    public function update(Request $request, int $id): RedirectResponse
+    {
+        $rules = [
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'address' => 'required|max:255',
+        ];
+
+        $messages = [
+            'required' => 'Vänligen fyll i alla fält.',
+            'first_name.max' => 'Förnamnet får inte överstiga 255 tecken.',
+            'last_name.max' => 'Efternamnet får inte överstiga 255 tecken.',
+            'phone.max' => 'Telefonnummret får inte överstiga 255 tecken.',
+            'address.max' => 'Adressen får inte överstiga 255 tecken.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $customer = Customer::find($id);
+
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+
+        $customer->save();
+
+        session()->flash('status', 'Kundinformationen har uppdaterats');
+        return redirect()->route('customer.index');
+    }
+
+    public function destroy(int $id): RedirectResponse
+    {
+        $customer = Customer::find($id);
+
+        if (!$customer) {
+            abort(404);
+        }
+
+        $customer->delete();
+        session()->flash('status', 'Kunden har raderats');
+        return back();
+    }
 }
