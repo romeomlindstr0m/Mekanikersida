@@ -7,6 +7,11 @@
   @vite('resources/js/customer_search.js')
 </head>
 <body>
+  @if(session('status'))
+        <div class="w-full">
+        <x-status-banner :status="session('status')" />
+        </div>
+  @endif
   <x-sidebar :username="Auth::user()->username" />
     <div class="w-3/4 mx-auto font-inter mt-5">
     <div class="w-full flex justify-between items-center mb-5 mt-1 pl-3">
@@ -80,10 +85,13 @@
                     <td class="p-4 py-5">
                     <p class="text-sm text-slate-500">{{ $customer->address }}</p>
                     </td>
-                    <td class="p-4 py-5 flex">
-                    <p class="text-sm text-slate-500">Redigera</p>
+                    <td class="p-4 py-5 flex items-center">
+                    <a href="{{ route('customer.edit', ['id' => $customer->id]) }}" class="text-sm text-slate-500">Redigera</a>
                     <p class="text-sm text-slate-500 mx-1">|</p>
-                    <p class="text-sm text-slate-500">Ta bort</p>
+                    <form action="{{ route('customer.destroy', ['id' => $customer->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-sm text-slate-500">Ta bort</button>
+                    </form>
                     </td>
                 </tr>
             @endforeach
@@ -92,7 +100,7 @@
      
       <div class="flex justify-between items-center px-4 py-3">
         <div class="text-sm text-slate-500">
-          Visar <b>{{ $customers->firstItem() }}-{{ $customers->lastItem() }}</b> resultat av {{ $customers->lastPage() }} sida
+          Visar <b>{{ $customers->firstItem() }}-{{ $customers->lastItem() }}</b> resultat av {{ $customers->lastPage() }} {{ $customers->lastPage() == 1 ? 'sida' : 'sidor' }}
         </div>
         <div class="flex space-x-1">
             @if ($customers->onFirstPage())
