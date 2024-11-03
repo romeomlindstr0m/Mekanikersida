@@ -6,15 +6,14 @@
   @vite('resources/css/app.css')
 </head>
 <body class="font-inter flex flex-col items-center min-h-screen">
+    <x-sidebar :username="Auth::user()->username" />
 
     @if(session('status'))
-      <!-- Full-width banner positioned at the top -->
       <div class="w-full">
         <x-status-banner :status="session('status')" />
       </div>
     @endif
 
-    <!-- Main centered container -->
     <div class="flex justify-center items-center flex-grow w-3/5">
       <form action="{{ route('customer.store') }}" method="POST">
         @csrf
