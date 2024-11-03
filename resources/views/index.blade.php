@@ -6,7 +6,8 @@
   @vite('resources/css/app.css')
 </head>
 <body>
-  <h1 class="text-3xl font-bold underline">
+  <x-sidebar :username="Auth::user()->username" />
+  <h1 class="text-3xl text-center font-bold underline">
     Hello world!
   </h1>
 </body>
