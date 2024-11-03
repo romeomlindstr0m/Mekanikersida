@@ -44,4 +44,10 @@ class CustomerController extends Controller
         session()->flash('status', 'En ny kund har skapats');
         return back();
     }
+
+    public function index()
+    {
+        $customers = Customer::paginate(10);
+        return view('search_customer')->with('customers', $customers);
+    }
 }
