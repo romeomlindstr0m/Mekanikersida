@@ -19,3 +19,6 @@ Route::get('/customers/create', function() {
 })->middleware('auth')->name('customer.create');
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store')->middleware('auth');
 Route::get('/customers/search', [CustomerController::class, 'index'])->name('customer.index')->middleware('auth');
+Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit')->middleware('auth');
+Route::post('/customers/{id}/update', [CustomerController::class, 'update'])->name('customer.update')->middleware('auth');
+Route::post('/customers/{id}/destroy', [CustomerController::class, 'destroy'])->name('customer.destroy')->middleware('auth');
