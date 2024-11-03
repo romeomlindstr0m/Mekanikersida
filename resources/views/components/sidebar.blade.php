@@ -1,22 +1,23 @@
 @vite('resources/js/sidebar.js')
-<button id="toggleSidebar" class="fixed top-4 left-[17rem] z-[60] p-2 rounded-full transition-all duration-300">
-    <svg id="openIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6 hidden">
+<button id="toggleSidebar" class="fixed top-4 left-4 z-[60] p-2 rounded-full transition-all duration-300">
+    <svg id="openIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
     </svg>      
     
-    <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6">
+    <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6 hidden">
         <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
     </svg>      
 </button>
 <div
-  class="font-inter fixed top-0 left-0 z-50 flex h-full w-full sm:max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5 transform transition-transform duration-300" id="sidebar">
+  class="font-inter fixed top-0 left-0 z-50 flex h-full w-full sm:max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 -translate-x-full text-gray-700 shadow-xl shadow-blue-gray-900/5 transform transition-transform duration-300" id="sidebar">
   <div class="p-4 mb-2 flex">
     <h5 class="block text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
       Powerol
     </h5>
   </div>
   <nav class="flex min-w-[240px] flex-col gap-1 p-2 text-base font-normal text-blue-gray-700">
-    <div role="button"
+    <a role="button"
+      href="{{ route('index') }}"
       class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
       <div class="grid mr-4 place-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -24,8 +25,9 @@
           </svg>          
       </div>
       Projekt
-    </div>
-    <div role="button"
+    </a>
+    <a role="button"
+      href="{{ route('customer.index') }}"
       class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
       <div class="grid mr-4 place-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -33,8 +35,18 @@
         </svg>          
       </div>
       Kunder
-    </div>
-    <div role="button"
+    </a>
+    <a role="button"
+      href="{{ route('customer.create') }}"
+      class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+      <div class="grid mr-4 place-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+        </svg>                
+      </div>
+      Lägg till kund
+    </a>
+    <a role="button"
       class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
       <div class="grid mr-4 place-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -42,7 +54,7 @@
         </svg>          
       </div>
       Projektlogg
-    </div>
+    </a>
     </nav>
     <div class="mt-auto pb-4 ps-4">
         <div class="flex items-center gap-4">
