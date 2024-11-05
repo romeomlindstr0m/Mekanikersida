@@ -86,15 +86,22 @@
                     <p class="text-sm text-slate-500">{{ $customer->address }}</p>
                     </td>
                     <td class="p-4 py-5 flex items-center">
-                    <a href="{{ route('customer.edit', ['id' => $customer->id]) }}" class="text-sm text-slate-500">Redigera</a>
+                    <a href="{{ route('customer.edit', ['id' => $customer->id]) }}" class="text-sm text-blue-500">Redigera</a>
                     <p class="text-sm text-slate-500 mx-1">|</p>
                     <form action="{{ route('customer.destroy', ['id' => $customer->id]) }}" method="POST">
                     @csrf
-                    <button type="submit" class="text-sm text-slate-500">Ta bort</button>
+                    <button type="submit" class="text-sm text-red-600">Ta bort</button>
                     </form>
                     </td>
                 </tr>
             @endforeach
+            @empty ($customer)
+                <tr>
+                  <td>
+                    <span class="text-slate-500 ms-3">Inga kunder hittades.</span>
+                  </td>
+                </tr>
+            @endempty
         </tbody>
       </table>
      
