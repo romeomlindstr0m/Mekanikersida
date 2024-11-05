@@ -16,14 +16,21 @@ class CustomerController extends Controller
             'last_name' => 'required|max:255',
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
+            'email' => 'required|email:rfc|max:255',
+            'city' => 'required|max:255',
+            'postal_code' => 'required|max:255',
         ];
 
         $messages = [
             'required' => 'Vänligen fyll i alla fält.',
-            'first_name.max' => 'Förnamnet får inte överstiga 255 tecken.',
-            'last_name.max' => 'Efternamnet får inte överstiga 255 tecken.',
-            'phone.max' => 'Telefonnummret får inte överstiga 255 tecken.',
-            'address.max' => 'Adressen får inte överstiga 255 tecken.',
+            'first_name.max' => 'Förnamnfältet får inte överstiga 255 tecken.',
+            'last_name.max' => 'Efternamnfältet får inte överstiga 255 tecken.',
+            'phone.max' => 'Telefonnummerfältet får inte överstiga 255 tecken.',
+            'address.max' => 'Adressfältet får inte överstiga 255 tecken.',
+            'email.email' => 'E-postadressfältet har ett ogiltigt format.',
+            'email.max' => 'E-postadressfältet får inte överstiga 255 tecken.',
+            'city.max' => 'Ortfältet får inte överstiga 255 tecken.',
+            'postal_code.max' => 'Postnummerfältet får inte överstiga 255 tecken.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -38,6 +45,9 @@ class CustomerController extends Controller
         $customer->last_name = $request->last_name;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
+        $customer->email = $request->email;
+        $customer->city = $request->city;
+        $customer->postal_code = $request->postal_code;
 
         $customer->save();
 
@@ -69,14 +79,21 @@ class CustomerController extends Controller
             'last_name' => 'required|max:255',
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
+            'email' => 'required|email:rfc|max:255',
+            'city' => 'required|max:255',
+            'postal_code' => 'required|max:255',
         ];
 
         $messages = [
             'required' => 'Vänligen fyll i alla fält.',
-            'first_name.max' => 'Förnamnet får inte överstiga 255 tecken.',
-            'last_name.max' => 'Efternamnet får inte överstiga 255 tecken.',
-            'phone.max' => 'Telefonnummret får inte överstiga 255 tecken.',
-            'address.max' => 'Adressen får inte överstiga 255 tecken.',
+            'first_name.max' => 'Förnamnfältet får inte överstiga 255 tecken.',
+            'last_name.max' => 'Efternamnfältet får inte överstiga 255 tecken.',
+            'phone.max' => 'Telefonnummerfältet får inte överstiga 255 tecken.',
+            'address.max' => 'Adressfältet får inte överstiga 255 tecken.',
+            'email.email' => 'E-postadressfältet har ett ogiltigt format.',
+            'email.max' => 'E-postadressfältet får inte överstiga 255 tecken.',
+            'city.max' => 'Ortfältet får inte överstiga 255 tecken.',
+            'postal_code.max' => 'Postnummerfältet får inte överstiga 255 tecken.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -91,6 +108,9 @@ class CustomerController extends Controller
         $customer->last_name = $request->last_name;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
+        $customer->email = $request->email;
+        $customer->city = $request->city;
+        $customer->postal_code = $request->postal_code;
 
         $customer->save();
 
