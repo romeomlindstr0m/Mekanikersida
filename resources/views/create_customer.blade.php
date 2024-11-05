@@ -38,7 +38,7 @@
               </div>
             @endif
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
               <div class="sm:col-span-3">
                 <label for="first_name" class="block text-sm/6 font-medium text-gray-900">Förnamn</label>
                 <div class="mt-2">
@@ -55,18 +55,26 @@
                 </div>
               </div>
 
-              <div class="col-span-full">
-                <label for="phone" class="block text-sm/6 font-medium text-gray-900">Telefonnummer</label>
+              <div class="sm:col-span-3">
+                <label for="address" class="block text-sm/6 font-medium text-gray-900">Adress</label>
                 <div class="mt-2">
-                  <input type="text" name="phone" id="phone"
+                  <input type="text" name="address" id="address"
+                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-3">
+                <label for="postal_code" class="block text-sm/6 font-medium text-gray-900">Postnummer</label>
+                <div class="mt-2">
+                  <input type="text" name="postal_code" id="postal_code"
                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
                 </div>
               </div>
 
               <div class="col-span-full">
-                <label for="address" class="block text-sm/6 font-medium text-gray-900">Adress</label>
+                <label for="phone" class="block text-sm/6 font-medium text-gray-900">Telefonnummer</label>
                 <div class="mt-2">
-                  <input type="text" name="address" id="address"
+                  <input type="text" name="phone" id="phone"
                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
                 </div>
               </div>
@@ -83,14 +91,6 @@
                 <label for="city" class="block text-sm/6 font-medium text-gray-900">Ort</label>
                 <div class="mt-2">
                   <input type="text" name="city" id="city"
-                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <label for="postal_code" class="block text-sm/6 font-medium text-gray-900">Postnummer</label>
-                <div class="mt-2">
-                  <input type="text" name="postal_code" id="postal_code"
                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
                 </div>
               </div>
