@@ -70,6 +70,30 @@
                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
                 </div>
               </div>
+
+              <div class="col-span-full">
+                <label for="email" class="block text-sm/6 font-medium text-gray-900">E-postadress</label>
+                <div class="mt-2">
+                  <input type="email" name="email" id="email"
+                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
+                </div>
+              </div>
+
+              <div class="col-span-full">
+                <label for="city" class="block text-sm/6 font-medium text-gray-900">Ort</label>
+                <div class="mt-2">
+                  <input type="text" name="city" id="city"
+                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
+                </div>
+              </div>
+
+              <div class="col-span-full">
+                <label for="postal_code" class="block text-sm/6 font-medium text-gray-900">Postnummer</label>
+                <div class="mt-2">
+                  <input type="text" name="postal_code" id="postal_code"
+                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">
+                </div>
+              </div>
             </div>
           </div>
         </div>
