@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProjectController;
 
 Route::get('/', function() {
     return view('index');
@@ -22,3 +23,5 @@ Route::get('/customers/search', [CustomerController::class, 'index'])->name('cus
 Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit')->middleware('auth');
 Route::post('/customers/{id}/update', [CustomerController::class, 'update'])->name('customer.update')->middleware('auth');
 Route::post('/customers/{id}/destroy', [CustomerController::class, 'destroy'])->name('customer.destroy')->middleware('auth');
+
+Route::get('/projects/create', [ProjectController::class, 'create'])->name('project.create')->middleware('auth');
