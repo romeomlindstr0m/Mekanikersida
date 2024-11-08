@@ -25,3 +25,4 @@ Route::post('/customers/{id}/update', [CustomerController::class, 'update'])->na
 Route::post('/customers/{id}/destroy', [CustomerController::class, 'destroy'])->name('customer.destroy')->middleware('auth');
 
 Route::get('/projects/create', [ProjectController::class, 'create'])->name('project.create')->middleware('auth');
+Route::post('/projects/store', [ProjectController::class, 'store'])->name('project.store')->middleware('auth');
