@@ -6,21 +6,21 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class CreateManager extends Command
+class CreateMechanic extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'db:create-manager {username} {password}';
+    protected $signature = 'db:create-mechanic {username} {password}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create the manager user';
+    protected $description = 'Create a mechanic user';
 
     /**
      * Execute the console command.
