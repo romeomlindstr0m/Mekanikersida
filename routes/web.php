@@ -5,10 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProjectController;
 
-Route::get('/', function() {
-    return view('index');
-})->middleware('auth')->name('index');
-
 Route::get('/login', function() {
     return view('login');
 });
@@ -26,3 +22,7 @@ Route::post('/customers/{id}/destroy', [CustomerController::class, 'destroy'])->
 
 Route::get('/projects/create', [ProjectController::class, 'create'])->name('project.create')->middleware('auth');
 Route::post('/projects/store', [ProjectController::class, 'store'])->name('project.store')->middleware('auth');
+Route::get('/projects/search', [ProjectController::class, 'index'])->name('project.index')->middleware('auth');
+Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit')->middleware('auth');
+Route::post('/projects/{id}/destroy', [ProjectController::class, 'destroy'])->name('project.destroy')->middleware('auth');
+Route::get('/projects/{id}/show', [ProjectController::class, 'show'])->name('project.show')->middleware('auth');
