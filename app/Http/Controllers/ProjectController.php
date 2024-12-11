@@ -14,6 +14,25 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProjectController extends Controller
 {
+    public function index(): View
+    {
+        $projects = Project::paginate(10);
+        return view('search_project')->with('projects', $projects);
+    }
+
+    public function edit(int $id)
+    {
+        $project = Project::find($id);
+        $customers = Customer::all();
+        $project_statuses = ProjectStatus::all();
+
+        if (!$project) {
+            abort(404);
+        }
+
+        return view('edit_project')->with(['project' => $project, 'customers' => $customers, 'project_statuses' => $project_statuses]);
+    }
+
     public function create(): View
     {
         $customers = Customer::all();
@@ -73,5 +92,18 @@ class ProjectController extends Controller
         } catch (ModelNotFoundException $e) {
             return back()->withErrors(['error' => 'Det gick inte att hitta den nödvändiga projektstatusen. Vänligen kontakta administratören.']);
         }
+    }
+
+    public function destroy(int $id): RedirectResponse
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            abort(404);
+        }
+
+        $project->delete();
+        session()->flash('status', 'Projektet har raderats');
+        return back();
     }
 }
