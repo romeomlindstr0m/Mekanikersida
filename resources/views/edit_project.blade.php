@@ -16,11 +16,11 @@
     @endif
 
     <div class="flex justify-center items-center flex-grow w-3/5">
-      <form class="w-full" action="{{ route('project.store') }}" method="POST">
+      <form class="w-full" action="{{ route('project.update', ['id' => $project->id]) }}" method="POST">
         @csrf
         <div class="space-y-12">
           <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base/7 font-semibold text-gray-900">Ändra Projektinformation</h2>
+            <h2 class="text-base/7 font-semibold text-gray-900">Ändra projektinformation</h2>
             <p class="mt-1 text-sm/6 text-gray-600">Ändra information på ett existerande projekt</p>
 
             @if ($errors->any())
@@ -263,6 +263,36 @@
                 <div class="mt-2">
                   <textarea rows="3" cols="50" name="work_description" id="work_description" value="{{ $project->work_description }}"
                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm/6">{{ $project->work_description }}</textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-12">
+              <h2 class="text-base/7 font-semibold text-gray-900">Lägg till skiftestid</h2>
+              <p class="mt-1 text-sm/6 text-gray-600">Ange start- och sluttid för skiftet</p>
+
+              <div class="mx-auto grid grid-cols-2 gap-4 col-span-full mt-4">
+                <div>
+                    <label for="start_time" class="block mb-2 text-sm font-medium text-gray-900">Starttid</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <input type="time" id="start_time" name="start_time" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-200 focus:border-sky-200 block w-full p-2.5" step="60" value="" />
+                    </div>
+                </div>
+                <div>
+                    <label for="end_time" class="block mb-2 text-sm font-medium text-gray-900">Sluttid</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <input type="time" id="end_time" name="end_time" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-200 focus:border-sky-200 block w-full p-2.5" step="60" value="" />
+                    </div>
                 </div>
               </div>
             </div>
