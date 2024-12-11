@@ -94,6 +94,17 @@ class ProjectController extends Controller
         }
     }
 
+    public function show(int $id): View
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            abort(404);
+        }
+
+        return view('show_project')->with('project', $project);
+    }
+
     public function destroy(int $id): RedirectResponse
     {
         $project = Project::find($id);
