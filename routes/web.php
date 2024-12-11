@@ -5,10 +5,15 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProjectController;
 
+Route::get('/', function() {
+    return redirect()->route('project.index');
+});
+
 Route::get('/login', function() {
     return view('login');
 });
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/customers/create', function() {
