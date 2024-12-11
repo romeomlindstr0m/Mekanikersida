@@ -92,6 +92,8 @@
                     @csrf
                     <button type="submit" class="text-sm text-red-600">Ta bort</button>
                     </form>
+                    <p class="text-sm text-slate-500 mx-1">|</p>
+                    <a href="{{ route('project.show', ['id' => $project->id]) }}" class="text-sm text-slate-500">Visa</a>
                     </td>
                 </tr>
             @endforeach
