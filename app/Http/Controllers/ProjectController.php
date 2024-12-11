@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use App\Models\Customer;
 use App\Models\Project;
 use App\Models\ProjectStatus;
+use App\Models\TimeLog;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -37,6 +38,82 @@ class ProjectController extends Controller
     {
         $customers = Customer::all();
         return view('create_project')->with('customers', $customers);
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $rules = [
+            'name' => 'required|max:255',
+            'car_model' => 'required|max:255',
+            'car_make' => 'required|max:255',
+            'car_year' => 'required|integer|numeric',
+            'license_plate' => 'required|max:255',
+            'customer_id' => 'required|exists:customers,id',
+            'issue_description' => 'required',
+            'work_description' => 'required',
+            'project_status_id' => 'required|exists:project_statuses,id',
+            'start_time' => 'required_with:end_time|date_format:H:i',
+            'end_time' => 'required_with:start_time|date_format:H:i|after:start_time',
+        ];
+
+        $messages = [
+            'required' => 'Vänligen fyll i alla fält.',
+            'car_year.integer' => 'Årsmodell fältet måste bestå av endast siffror.',
+            'car_year.numeric' => 'Årsmodell fältet måste bestå av endast siffror.',
+            'customer_id.exists' => 'Kunden kunde inte hittas.',
+            'name.max' => 'Projektnamn fältet får inte överstiga 255 tecken.',
+            'car_model.max' => 'Bilmodell fältet får inte överstiga 255 tecken.',
+            'car_make.max' => 'Bilmärke fältet får inte överstiga 255 tecken.',
+            'license_plate.max' => 'Registernummer fältet får inte överstiga 255 tecken.',
+            'project_status_id.exists' => 'Det gick inte att hitta den nödvändiga projektstatusen. Vänligen kontakta administratören.',
+            'start_time.required_with' => 'Sluttid fältet är obligatorisk om starttid fältet är ifyllt.',
+            'start_time.date_format' => 'Starttid fältet måste vara i formatet HH:MM.',
+            'end_time.required_with' => 'Starttid fältet är obligatoriskt om sluttid fältet är ifyllt.',
+            'end_time.date_format' => 'Sluttid fältet måste vara i formatet HH:MM.',
+            'end_time.after' => 'Sluttid fältet måste vara efter starttid.',
+        ];
+
+        $request->merge([
+            'start_time' => $request->start_time ?: null,
+            'end_time' => $request->end_time ?: null,
+        ]);
+
+        $validator = Validator::make(
+            $request->all(),
+            $rules,
+            $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $existing_project = Project::find($id);
+
+        $existing_project->name = $request->name;
+        $existing_project->car_model = $request->car_model;
+        $existing_project->car_make = $request->car_make;
+        $existing_project->car_year = $request->car_year;
+        $existing_project->license_plate = $request->license_plate;
+        $existing_project->customer_id = $request->customer_id;
+        $existing_project->project_status_id = $request->project_status_id;
+        $existing_project->issue_description = $request->issue_description;
+        $existing_project->work_description = $request->work_description;
+
+        $existing_project->save();
+
+        if ($request->start_time && $request->end_time) {
+            $time_log = new TimeLog;
+
+            $time_log->user_id = Auth::id();
+            $time_log->project_id = $id;
+            $time_log->start_time = $request->start_time;
+            $time_log->end_time = $request->end_time;
+
+            $time_log->save();
+        }
+
+        session()->flash('status', 'Projektinformationen har sparats');
+        return redirect()->route('project.index');
     }
 
     public function store(Request $request): RedirectResponse
