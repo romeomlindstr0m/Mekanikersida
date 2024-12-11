@@ -31,3 +31,4 @@ Route::get('/projects/search', [ProjectController::class, 'index'])->name('proje
 Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit')->middleware('auth');
 Route::post('/projects/{id}/destroy', [ProjectController::class, 'destroy'])->name('project.destroy')->middleware('auth');
 Route::get('/projects/{id}/show', [ProjectController::class, 'show'])->name('project.show')->middleware('auth');
+Route::post('/projects/{id}/update', [ProjectController::class, 'update'])->name('project.update')->middleware('auth');
