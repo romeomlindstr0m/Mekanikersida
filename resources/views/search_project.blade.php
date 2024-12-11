@@ -16,8 +16,8 @@
     <div class="w-3/4 mx-auto font-inter mt-5">
     <div class="w-full flex justify-between items-center mb-5 mt-1 pl-3">
         <div>
-            <h3 class="text-lg font-semibold text-slate-800">Kundlista</h3>
-            <p class="text-slate-500">Här kan du se alla kunder samt redigera eller ta bort kunder</p>
+            <h3 class="text-lg font-semibold text-slate-800">Projektlista</h3>
+            <p class="text-slate-500">Här kan du se alla projekt samt redigera eller ta bort projekt</p>
         </div>
         <div class="ml-3">
             <div class="w-full max-w-sm min-w-[200px] relative">
@@ -100,7 +100,7 @@
             @empty ($projects)
                 <tr>
                   <td>
-                    <span class="text-slate-500 ms-3">Inga kunder hittades.</span>
+                    <span class="text-slate-500 ms-3">Inga projekt hittades.</span>
                   </td>
                 </tr>
             @endempty
